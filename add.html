@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <title>Add Course</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col md-12">
+          <div class="jumbo-tron p-3">
+             <h2>Manage <b>Course </b> <button type="button" class="btn btn-success flash-right" data-toggle="modal" data-target="#mymodal"> Add New Course</button></h2>
+             {% with messages = get_flashed_message %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+               <button type="button" class="close" data-dismiss="alert" aria-label="close">
+
+                 <span aria-hidden="true">x</span>
+               </button>
+              {{message}}
+
+            </div>
+
+            {% endfor %}
+
+            {% endif %}
+            {% endwith %}
+            <div class="table table-hover table-dark">
+
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+
+              </tr>
+
+              {% for row in courses %}
+
+              <tr>
+                <td>01</td>
+                <td></td>
+                <td></td>
+                <td>
+                  <a href="" class="btn btn-warning btn-xs" data-toggle="modal"></a>
+                  <a href="" class="btn btn-danger btn-xs" onclick="return confirm"></a>
+                </td>
+              </tr>
+
+                   </div>
+                </div>
+            </div>
+                {% endfor %}
+          </table>
+          </div>
+    </div>

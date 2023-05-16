@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="UTF-8">
+    <title>Flask CRUD Application</title>
+  </head>
+  <body>
+    <h1>Courses</h1>
+    <table class="table table-hover table-dark">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for course in courses %}
+        <tr>
+          <td>{{row.id}}</td>
+          <td>{{row.name}}</td>
+          <td>{{row.description}}</td>
+          <td>
+            <a href="/edit/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.id}}">Edit Course</a>
+            <a href="/delete/{{row.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to delete?')">Delete</a>
+
+          </td>
+        </tr>
+
+        {% endfor %}
+
+      </tbody>
+    </table>
+    <a href="{{ url_for('add') }}">Add Course</a>
+  </body>
+</html>
