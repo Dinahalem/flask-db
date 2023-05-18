@@ -1,17 +1,11 @@
-# import mysql.connector
-from flask import Flask, render_template, flash, request, url_for, redirect
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-# Create a function to establish a connection to the MySQL database:
-
-app.secret_key = "secret key"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:1234@localhost/flask-db'
-app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:1234@localhost/courses_db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-
-# Create a route for displaying all courses:
 
 class Data(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -27,10 +21,7 @@ class Data(db.Model):
 def index():
     all_data = Data.query.all()
 
-    return render_template('index.html', courses=all_data)
-
-
-# Create a route for adding new courses:
+    return render_template("index.html")
 
 
 @app.route("/add", methods=["POST"])
@@ -49,8 +40,6 @@ def add():
         return redirect(url_for('add.html'))
 
 
-# Create a route for editing courses:
-
 @app.route("/edit/", methods=['GET', 'POST'])
 def edit():
     if request.method == "POST":
@@ -64,8 +53,6 @@ def edit():
     else:
         return render_template("add.html")
 
-
-# Create a route for deleting courses:
 
 @app.route('/delete/<id>/', methods=['GET', 'POST'])
 def delete(id):
